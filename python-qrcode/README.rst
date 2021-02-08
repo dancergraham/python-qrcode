@@ -1,15 +1,11 @@
 =============================
-Pure python QR Code generator
+Rhino python QR Code generator
 =============================
 
-Generate QR codes.
+Generate QR codes using McNeel Rhino 7 (may work on other versions).
 
-For a standard install (which will include pillow_ for generating images),
-run::
+Copy the qrcode directory into your Rhino scripts folder
 
-    pip install qrcode[pil]
-
-.. _pillow: https://pypi.python.org/pypi/Pillow
 
 
 What is a QR Code?
@@ -24,16 +20,15 @@ alphanumeric, or Kanji symbols)
 Usage
 =====
 
-From the command line, use the installed ``qr`` script::
-
-    qr "Some text" > test.png
-
-Or in Python, use the ``make`` shortcut function:
-
 .. code:: python
 
     import qrcode
-    img = qrcode.make('Some data here')
+    import qrcode.image.rhino_image
+    reload(qrcode.image.rhino_image)
+
+    factory = qrcode.image.rhino_image.RhinoImage
+    img = qrcode.make('grasshopper', image_factory=factory)
+    img.show()
 
 Advanced Usage
 --------------
